@@ -4,19 +4,19 @@ date: 2018-01-23 03:44:38
 tags:
 ---
 
-### 目标：在Linux服务器B上访问服务器A上指定的文件系统
+### 目标：在Linux服务器B上访问服务器A上指定的文件系统 ###
 **************************************************************************
-首先要配置服务器A
+1.首先要配置服务器A
 
 编辑/etc/exports,加入:
 
 /home    192.168.1.1(rw)    #IP是服务器B的地址, 目录是要共享出的目录
 
-然后启动nfs服务:
+2.然后启动nfs服务:
 
 /etc/init.d/nfs start
 
-到服务器B上就可以挂载了
+3.到服务器B上就可以挂载了
 
 mount 192.168.1.1:/hoome /mnt
 
@@ -25,31 +25,31 @@ mount 192.168.1.1:/hoome /mnt
 这样就可以在服务器B上像访问本地目录一样访问服务器A的目录了
 **************************************************************************
 
-### mysql 添加用户
+### mysql 添加用户 ###
 ``` bash
 $ grant all privileges on *.* to alen@localhost identified by '1234';
 $ flush privileges;
 $ select Host,User,Password from mysql.user;
 ```
 
-#### 拷贝
+### 拷贝 ###
 scp -r . alen@10.1.2.27:/home/alen/game_server/x86_64pc-linux-debug/bin/
 
-#### git使用
+### git使用 ###
 **************************************************************************
-本地新建分支, 把此分支放入其中:
-git checkout -b <本地分支名> origin/<远程分支名>
-git push origin --delete alen-gmd-server 删除远程分支
-git branch -D alen-gmd-server 强制删除本地分支
-git push origin --delete alen-gmd-server 删除远程分支
-git fetch -p  在本地删除远程已经删除的分支
+本地新建分支, 把此分支放入其中:  
+git checkout -b <本地分支名> origin/<远程分支名>  
+git push origin --delete alen-gmd-server 删除远程分支  
+git branch -D alen-gmd-server 强制删除本地分支  
+git push origin --delete alen-gmd-server 删除远程分支  
+git fetch -p  在本地删除远程已经删除的分支  
 git branch -m old_name new_name
 
-git reset HEAD .  撤销所有的已经add的文件
-git add -A   它会把我们未通过 git rm 删除的文件全部stage
+git reset HEAD . 撤销所有的已经add的文件  
+git add -A 它会把我们未通过 git rm 删除的文件全部stage
 **************************************************************************
 
-#### sublime个性化设置
+### sublime个性化设置 ###
 **************************************************************************
 Sublime Text3 3143 注册码,亲测可用!
 
@@ -76,7 +76,7 @@ Ctrl+P 打开搜索框。
 
 
 Sublime Text3 user_setting
-
+``` bash
 {
         "auto_complete_commit_on_tab": false,
         "auto_complete_delay": 0,
@@ -129,4 +129,4 @@ Sublime Text3 user_setting
         "word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
         "word_wrap": "false"
 }
-**************************************************************************
+```
