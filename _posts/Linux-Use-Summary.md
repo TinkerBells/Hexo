@@ -35,24 +35,61 @@ $ select Host,User,Password from mysql.user;
 ### 拷贝 ###
 scp -r . alen@10.1.2.27:/home/alen/game_server/x86_64pc-linux-debug/bin/
 
-### git使用 ###
+### git安装和使用 ###
 **************************************************************************
-本地新建分支, 把此分支放入其中:  
-git checkout -b <本地分支名> origin/<远程分支名>  
-git push origin --delete alen-gmd-server 删除远程分支  
-git branch -D alen-gmd-server 强制删除本地分支  
-git push origin --delete alen-gmd-server 删除远程分支  
-git fetch -p  在本地删除远程已经删除的分支  
-git branch -m old_name new_name
+1. 通过git –-version查看系统带的版本，Cento6.5自带的是git版本是1.7.1
 
-git reset HEAD . 撤销所有的已经add的文件  
-git add -A 它会把我们未通过 git rm 删除的文件全部stage
+    ```javascript
+    $ yum remove git
+    ```
+
+2. 安装前环境配置
+
+    ```bash
+    $ yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc xmlto perl-devel perl-CPAN autoconf*
+    ```
+
+3. 下载git2.2.1并将git添加到环境变量中
+
+    ```bash
+    $ wget https://github.com/git/git/archive/v2.2.1.tar.gz
+    $ tar zxvf v2.2.1.tar.gz
+    $ cd git-2.2.1
+    $ make configure
+    $ ./configure --prefix=/usr/local/git --with-iconv=/usr/local/libiconv
+    $ make all doc
+    $ make install install-doc install-html
+    $ echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+    $ source /etc/bashrc
+    ```
+
+4. 查看版本号
+
+    ``` bash
+    $ git --version
+    >git version 2.2.1
+    ```
+
+5. 使用
+
+    ```javascript
+    $ git checkout -b <本地分支名> origin/<远程分支名>  本地新建分支, 把此分支放入其中
+    $ git push origin --delete alen-gmd-server 删除远程分支
+    $ git branch -D alen-gmd-server 强制删除本地分支
+    $ git push origin --delete alen-gmd-server 删除远程分支
+    $ git fetch -p  在本地删除远程已经删除的分支
+    $ git branch -m old_name new_name
+    $ git reset HEAD . 撤销所有的已经add的文件
+    $ git add -A 它会把我们未通过 git rm 删除的文件全部stage
+    ```
+
 **************************************************************************
+
 
 ### sublime个性化设置 ###
 **************************************************************************
 Sublime Text3 3143 注册码,亲测可用!
-
+```javascript
 —– BEGIN LICENSE —–
 TwitterInc
 200 User License
@@ -66,7 +103,7 @@ D5D52613 C3D12E98 BC49967F 7652EED2
 9D2D2E61 67610860 6D338B72 5CF95C69
 E36B85CC 84991F19 7575D828 470A92AB
 —— END LICENSE ——
-
+```
 Ctrl+P 打开搜索框。
 举个栗子：
 1、输入当前项目中的文件名，快速搜索文件，
@@ -130,3 +167,4 @@ Sublime Text3 user_setting
         "word_wrap": "false"
 }
 ```
+
